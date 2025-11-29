@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KosmaShow - Вокал & Степ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header id="main-header">
+        <div class="header-logo" id="headerLogoContainer">
+            <h1>KosmaShow</h1>
+            <p>Вокал & Степ</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/kosmashow/" class="icon-link" target="_blank">
+                <img src="logos/inst.png" alt="Instagram" class="social-icon">
+            </a>
+            <a href="https://vk.com/kosmashow" class="icon-link" target="_blank">
+                <img src="logos/vk.png" alt="VK" class="social-icon">
+            </a>
+            <a href="https://www.youtube.com/@kosmashow" class="icon-link" target="_blank">
+                <img src="logos/youtube.png" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://t.me/kosmashow" class="icon-link" target="_blank">
+                <img src="logos/telegram.png" alt="Telegram" class="social-icon">
+            </a>
+        </div>
+    </header>
+
+    <!-- Background Image Section -->
+    <section class="hero-section" style="background-image: url('logos/logo.png');">
+        <div class="overlay"></div>
+        <div class="logo-container" id="mainLogoContainer">
+            <h1>KosmaShow</h1>
+            <p>Вокал & Степ</p>
+        </div>
+    </section>
+
+    <section class="concerts">
+        <h2>Ближайшие концерты:</h2>
+        
+        <div class="concert">
+            <div class="date-time">
+                <h3>24 ноября, вс</h3>
+            </div>
+            <div class="details">
+                <h3>Испанская вечеринка</h3>
+                <p>Бар «Mapuche», ул. Некрасова, 34</p>
+            </div>
+            <div class="time">
+                <p>20:00</p>
+            </div>
+        </div>
+    
+        <div class="concert">
+            <div class="date-time">
+                <h3>28 ноября, чт</h3>
+            </div>
+            <div class="details">
+                <h3>Мюзикл «Звезды зажигаются»</h3>
+                <p>Театр на Коломенской, ул.Коломенская, 43</p>
+            </div>
+            <div class="time">
+                <p>19:30</p>
+            </div>
+        </div>
+    
+        <!-- Hidden concerts that will be revealed -->
+        <div class="hidden-concerts" id="hiddenConcerts">
+            <div class="concert">
+                <div class="date-time">
+                    <h3>4 декабря, ср</h3>
+                </div>
+                <div class="details">
+                    <h3>Мюзикл «Дама Пик»</h3>
+                    <p>ДК «Выборгский», ул. Комиссара Смирнова, 15</p>
+                </div>
+                <div class="time">
+                    <p>19:00</p>
+                </div>
+            </div>
+    
+            <div class="concert">
+                <div class="date-time">
+                    <h3>27 декабря, пт</h3>
+                </div>
+                <div class="details">
+                    <h3>Испанская вечеринка</h3>
+                    <p>Бар «Por favor», ул. Зодчего Росси, 2Б</p>
+                </div>
+                <div class="time">
+                    <p>21:30</p>
+                </div>
+            </div>
+        </div>
+    
+        <button class="next-concerts" id="toggleButton">Следующие концерты</button>
+    </section>
+    
+
+    <section class="profile-section">
+        <div class="profile-content">
+            <div class="profile-image">
+                <img src="logos/profile.jpg" alt="Profile Image">
+            </div>
+            <div class="profile-text">
+                <h2>Яна Космачёва</h2>
+                <p class="subtitle">солистка проекта KosmaShow</p>
+                <hr>
+                <p>Яна Космачёва - танцовщица и певица.
+                    Одна из ведущих исполнительниц степа в Санкт-Петербурге. В ее репертуаре - уникальные номера - стилизации танцев народов мира в жанре ирландского танца и степа, собравшие миллионы просмотров на YouTube.</p>
+                <p>Также Яна исполняет популярные песни на разных языках в своих музыкальных программах в сопровождении живой музыки, добавляя туда стук своих ритмичных каблуков.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="repertoire">
+        <h2 class="repertoire-title">Репертуар</h2>
+        <h3 class="subsection-title">Музыкальные программы</h3>
+        <div class="programs-container">
+            <div class="program">
+                <div class="program-image">
+                    <img src="logos/spain-program.jpg" alt="Испанская вечеринка">
+                </div>
+                <div class="program-details">
+                    <h3>Испанская вечеринка</h3>
+                    <p>Путешествуем по Испании под ритм страстных каблуков! Мы собрали самые популярные испанские песни в сопровождении аккордеона, кахона и гитары, чтобы вы почувствовали себя настоящим латиноамериканцем и подпевали каждой композиции!</p>
+                    <button class="video-button" onclick="window.open('https://vk.com/video-67259638_456239188?access_key=22deba3723b3a7d661', '_blank', 'noopener,noreferrer')">Видео</button>
+
+                </div>
+            </div>
+        
+            <div class="program">
+                <div class="program-image">
+                    <img src="logos/irish-program.jpg" alt="Ирландская вечеринка">
+                </div>
+                <div class="program-details">
+                    <h3>Ирландская вечеринка</h3>
+                    <p>Окунитесь в атмосферу изумрудного острова! В этой программе для вас: потрясающая скрипка, гитара и бойран, а также настоящие ирландские танцы, песни и мастер-класс по джиге в лучших традициях ирландского праздника!</p>
+                    <button class="video-button" onclick="window.open('https://vk.com/video/@kosmashow?z=video-67259638_456239175%2Fclub67259638', '_blank', 'noopener,noreferrer')">Видео</button>
+                </div>
+            </div>
+        
+            <div class="program">
+                <div class="program-image">
+                    <img src="logos/balkan-program.jpg" alt="Балканская вечеринка">
+                </div>
+                <div class="program-details">
+                    <h3>Балканская вечеринка</h3>
+                    <p>Если вы любите музыку Бреговича - вам сюда! Но даже если вы еще не знакомы с удивительной балканской культурой, то приглашаем отправиться на Балканы именно с нами, ведь мы исполним самые зажигательные композиции на сербском, румынском, молдавском и, конечно же, русском языках.</p>
+                    <button class="video-button" onclick="window.open('https://vk.com/video/@kosmashow/all?z=video-67259638_456239092%2Fclub67259638', '_blank', 'noopener,noreferrer')">Видео</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="repertoire">
+        <h3 class="subsection-title">Танцевальные номера</h3>
+        <div class="dance-text">
+            <p>Танцевальный репертуар Яны Космачёвой включает в себя более 40 уникальных номеров на любую тему и мероприятие. Объединяет эти номера главное - степ, умело вплетенный в разные танцевальные жанры. Венгерский Чардаш, греческий Сиртаки, ирландская джига, аргентинское танго, джаз, блюз...нашей команде подвластно отстучать любой ритм! Танцуем соло, дуэты, трио, массовые номера, а также сделаем номер на заказ именно под ваше мероприятие</p>
+        </div>
+        <button class="action-button" onclick="window.open('https://www.youtube.com/@kosmashow', '_blank', 'noopener,noreferrer')">Узнать больше</button>
+        <div class="photo-collage">
+            <div class="photo-container">
+                <img src="logos/collage/1.jpg" alt="Фото 1" class="thumbnail" onclick="showLightbox(0)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/2.jpg" alt="Фото 2" class="thumbnail" onclick="showLightbox(1)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/3.jpg" alt="Фото 3" class="thumbnail" onclick="showLightbox(2)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/4.jpg" alt="Фото 4" class="thumbnail" onclick="showLightbox(3)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/5.jpg" alt="Фото 5" class="thumbnail" onclick="showLightbox(4)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/6.jpg" alt="Фото 6" class="thumbnail" onclick="showLightbox(5)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/7.jpg" alt="Фото 7" class="thumbnail" onclick="showLightbox(6)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/8.jpg" alt="Фото 8" class="thumbnail" onclick="showLightbox(7)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/9.jpg" alt="Фото 9" class="thumbnail" onclick="showLightbox(8)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/10.jpg" alt="Фото 10" class="thumbnail" onclick="showLightbox(9)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/11.jpg" alt="Фото 11" class="thumbnail" onclick="showLightbox(10)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/12.jpg" alt="Фото 12" class="thumbnail" onclick="showLightbox(11)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/13.jpg" alt="Фото 13" class="thumbnail" onclick="showLightbox(12)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/14.jpg" alt="Фото 14" class="thumbnail" onclick="showLightbox(13)">
+            </div>
+            <div class="photo-container">
+                <img src="logos/collage/15.jpg" alt="Фото 15" class="thumbnail" onclick="showLightbox(14)">
+            </div>
+        </div>
+        
+        <!-- Модальное окно для просмотра изображений -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+            <span class="prev" onclick="changeImage(-1); event.stopPropagation();">&#10094;</span>
+            <img id="lightbox-img" src="" alt="Просмотр изображения">
+            <span class="next" onclick="changeImage(1); event.stopPropagation();">&#10095;</span>
+        </div>
+        
+    </section>
+    
+    
+    
+
+    <script src="script.js"></script>
+</body>
+
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="contact-info">
+            <h3>Контакты</h3>
+            <p><strong>Яна Космачева</strong></p>
+            <p>Организация выступления / Бронирование</p>
+            <p><i class="fas fa-phone-alt"></i> +7 (911) 776-35-05</p>
+            <p><i class="fas fa-envelope"></i> kosmashow@yandex.ru</p>
+        </div>
+        <div class="footer-icons">
+            <p>
+                Icons by <a target="_blank" href="https://icons8.com">Icons8</a>: 
+                <a target="_blank" href="https://icons8.com/icon/43625/instagram">Instagram</a>, 
+                <a target="_blank" href="https://icons8.com/icon/dSdVIYLfZB7v/vk-circled">Vk</a>,
+                <a target="_blank" href="https://icons8.com/icon/44112/youtube">YouTube</a>,
+                <a target="_blank" href="https://icons8.com/icon/114954/telegram-app">Telegram</a>.
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+</html>
