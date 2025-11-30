@@ -808,6 +808,7 @@ header.scrolled .header-logo {
 
   header {
     padding: 10px 15px;
+    transition: transform 0.35s ease;
   }
 
   .header-logo {
@@ -822,6 +823,11 @@ header.scrolled .header-logo {
   .header-logo p {
     font-size: 0.9rem;
   }
+
+  header.hide-on-scroll {
+    transform: translateY(-100%);
+    transition: transform 0.35s ease;
+    }
 
   .icon-link {
     width: 35px;

@@ -239,3 +239,21 @@ function scrollToGala() {
 
     window.scrollTo({ top, behavior: "smooth" });
 }
+
+/* Hide / show header on mobile scroll */
+let lastScroll = 0;
+const header = document.querySelector("header");
+
+window.addEventListener("scroll", () => {
+    const current = window.scrollY;
+
+    if (current > lastScroll && current > 80) {
+        // Скролл вниз — спрятать
+        header.classList.add("hide-on-scroll");
+    } else {
+        // Скролл вверх — показываем
+        header.classList.remove("hide-on-scroll");
+    }
+
+    lastScroll = current;
+});
