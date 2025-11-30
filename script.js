@@ -239,33 +239,3 @@ function scrollToGala() {
 
     window.scrollTo({ top, behavior: "smooth" });
 }
-
-/* Hide / show header on mobile scroll — less sensitive */
-let lastScroll = 0;
-let hideTriggered = false;
-
-const header = document.querySelector("header");
-
-// Настройка чувствительности
-const downTolerance = 20;  // сколько пикселей вниз нужно пройти, чтобы спрятать
-const upTolerance = 80;    // сколько вверх нужно пройти, чтобы показать
-
-window.addEventListener("scroll", () => {
-    const current = window.scrollY;
-    const diff = current - lastScroll;
-
-    // Скролл вниз (значительное движение)
-    if (diff > downTolerance && current > 120 && !hideTriggered) {
-        header.classList.add("hide-on-scroll");
-        hideTriggered = true;
-    }
-
-    // Скролл вверх (значительное движение)
-    if (diff < -upTolerance && hideTriggered) {
-        header.classList.remove("hide-on-scroll");
-        hideTriggered = false;
-    }
-
-    lastScroll = current;
-});
-
