@@ -29,40 +29,54 @@
     </header>
 
     <!-- Background Image Section -->
-    <section class="hero-section" style="background-image: url('logos/gala_wallpaper.jpg');">
+    <section class="hero-section" style="background-image: url('logos/gala_wallpaper.png');">
         <div class="overlay"></div>
-        <div class="logo-container" id="mainLogoContainer">
+        <div class="hero-buttons">
+            <button class="btn primary blur" onclick="window.open('https://your-ticket-link-here', '_blank')">
+                Купить билет
+            </button>
+
+            <button class="btn primary blur" onclick="document.getElementById('gala-show').scrollIntoView({behavior:'smooth'})">
+                О моноспектакле
+            </button>
+        </div>
+
+        <!-- <div class="logo-container" id="mainLogoContainer">
             <h1>KosmaShow</h1>
             <p>Вокал & Степ</p>
-        </div>
+        </div> -->
     </section>
 
     <section class="concerts">
-        <h2>Ближайшие концерты:</h2>
+        <h2>Афиша:</h2>
         
         <div class="concert">
             <div class="date-time">
-                <h3>24 ноября, вс</h3>
+                <h3>24 января, сб</h3>
+                <h3>Премьера!</h3>
             </div>
             <div class="details">
-                <h3>Испанская вечеринка</h3>
-                <p>Бар «Mapuche», ул. Некрасова, 34</p>
+                <h3>Гала: история музы</h3>
+                <h3>Сальвадора Дали</h3>
+                <p>Особняк Брюллова, наб. Лейтенанта Шмидта, 37</p>
             </div>
             <div class="time">
-                <p>20:00</p>
+                <p>19:00</p>
             </div>
         </div>
     
         <div class="concert">
             <div class="date-time">
-                <h3>28 ноября, чт</h3>
+                <h3>1 февраля, вс</h3>
+                <h3>Премьера!</h3>
             </div>
             <div class="details">
-                <h3>Мюзикл «Звезды зажигаются»</h3>
-                <p>Театр на Коломенской, ул.Коломенская, 43</p>
+                <h3>Гала: история музы</h3>
+                <h3>Сальвадора Дали</h3>
+                <p>Особняк Брюллова, наб. Лейтенанта Шмидта, 37</p>
             </div>
             <div class="time">
-                <p>19:30</p>
+                <p>19:00</p>
             </div>
         </div>
     
@@ -70,7 +84,20 @@
         <div class="hidden-concerts" id="hiddenConcerts">
             <div class="concert">
                 <div class="date-time">
-                    <h3>4 декабря, ср</h3>
+                    <h3>6 декабря, сб</h3>
+                </div>
+                <div class="details">
+                    <h3>Испанская вечеринка</h3>
+                    <p>Бар «Mapuche», ул. Некрасова, 34</p>
+                </div>
+                <div class="time">
+                    <p>21:00</p>
+                </div>
+            </div>
+    
+            <div class="concert">
+                <div class="date-time">
+                    <h3>9, 10 декабря, вт, ср</h3>
                 </div>
                 <div class="details">
                     <h3>Мюзикл «Дама Пик»</h3>
@@ -80,23 +107,71 @@
                     <p>19:00</p>
                 </div>
             </div>
-    
+
             <div class="concert">
                 <div class="date-time">
-                    <h3>27 декабря, пт</h3>
+                    <h3>13 декабря, сб</h3>
                 </div>
                 <div class="details">
                     <h3>Испанская вечеринка</h3>
-                    <p>Бар «Por favor», ул. Зодчего Росси, 2Б</p>
+                    <p>Ресторан «Frida», ул. Чайковского, 57</p>
                 </div>
                 <div class="time">
-                    <p>21:30</p>
+                    <p>20:00</p>
                 </div>
             </div>
         </div>
     
-        <button class="next-concerts" id="toggleButton">Следующие концерты</button>
+        <button class="btn outline" id="toggleButton">Другие концерты</button>
     </section>
+
+        <!-- Блок о моноспектакле "Гала" -->
+    <section id="gala-show" class="gala-section">
+        <h2 class="gala-title">Моноспектакль «Гала: история музы Сальвадора Дали»</h2>
+
+        <div class="gala-content">
+            <div class="gala-text">
+                <p>
+                    Гала Дали — женщина, чьё имя звучит рядом с гениями, но её собственная история почти никогда не рассказывалась.
+                </p>
+                <p>
+                    В этом моноспектакле она сама открывает свой тайный дневник: путь юной девушки из России, которая сумела покорить сердца многих мужчин в Европе — и при этом не потерять саму себя. Первая страсть с Полем Элюаром, жизнь среди парижских художников и встреча с Сальвадором Дали, изменившая всё.
+                </p>
+                <p></p>
+                <p>
+                    Это камерная постановка, где драматический монолог переплетается с живой музыкой: аккордеон, перкуссия, гитара, скрипка и танцевальные зарисовки. Особую роль здесь играет степ — ритм ног, который становится частью повествования и подчёркивает эмоциональные акценты истории.
+                </p>
+                <p>
+                    Это спектакль, который невозможно пересказать — его нужно увидеть!
+                </p>
+
+                <button class="btn outline" onclick="window.open('https://your-ticket-link-here', '_blank')">
+                    Купить билет
+                </button>
+            </div>
+
+            <div class="gala-image">
+                <div class="gala-slider">
+                    <img src="logos/gala_slider/1.jpg" class="gala-slide active" alt="Гала 1">
+                    <img src="logos/gala_slider/2.jpg" class="gala-slide" alt="Гала 2">
+                    <img src="logos/gala_slider/3.jpg" class="gala-slide" alt="Гала 3">
+                    <img src="logos/gala_slider/4.jpg" class="gala-slide" alt="Гала 4">
+                    <img src="logos/gala_slider/5.jpg" class="gala-slide" alt="Гала 5">
+                    <img src="logos/gala_slider/6.jpg" class="gala-slide" alt="Гала 6">
+                    <img src="logos/gala_slider/7.jpg" class="gala-slide" alt="Гала 7">
+
+                    <!-- Кнопки переключения -->
+                    <span class="gala-prev" onclick="changeGalaSlide(-1)">&#10094;</span>
+                    <span class="gala-next" onclick="changeGalaSlide(1)">&#10095;</span>
+                </div>
+
+                <!-- Показывает маленькие кружки-переключатели -->
+                <div class="gala-dots" id="galaDots"></div>
+            </div>
+
+        </div>
+    </section>
+
     
 
     <section class="profile-section">
@@ -126,7 +201,7 @@
                 <div class="program-details">
                     <h3>Испанская вечеринка</h3>
                     <p>Путешествуем по Испании под ритм страстных каблуков! Мы собрали самые популярные испанские песни в сопровождении аккордеона, кахона и гитары, чтобы вы почувствовали себя настоящим латиноамериканцем и подпевали каждой композиции!</p>
-                    <button class="video-button" onclick="window.open('https://vk.com/video-67259638_456239188?access_key=22deba3723b3a7d661', '_blank', 'noopener,noreferrer')">Видео</button>
+                    <button class="btn outline fit" onclick="window.open('https://vk.com/video-67259638_456239188?access_key=22deba3723b3a7d661', '_blank', 'noopener,noreferrer')">Видео</button>
 
                 </div>
             </div>
@@ -138,7 +213,7 @@
                 <div class="program-details">
                     <h3>Ирландская вечеринка</h3>
                     <p>Окунитесь в атмосферу изумрудного острова! В этой программе для вас: потрясающая скрипка, гитара и бойран, а также настоящие ирландские танцы, песни и мастер-класс по джиге в лучших традициях ирландского праздника!</p>
-                    <button class="video-button" onclick="window.open('https://vk.com/video/@kosmashow?z=video-67259638_456239175%2Fclub67259638', '_blank', 'noopener,noreferrer')">Видео</button>
+                    <button class="btn outline fit" onclick="window.open('https://vk.com/video/@kosmashow?z=video-67259638_456239175%2Fclub67259638', '_blank', 'noopener,noreferrer')">Видео</button>
                 </div>
             </div>
         
@@ -149,7 +224,7 @@
                 <div class="program-details">
                     <h3>Балканская вечеринка</h3>
                     <p>Если вы любите музыку Бреговича - вам сюда! Но даже если вы еще не знакомы с удивительной балканской культурой, то приглашаем отправиться на Балканы именно с нами, ведь мы исполним самые зажигательные композиции на сербском, румынском, молдавском и, конечно же, русском языках.</p>
-                    <button class="video-button" onclick="window.open('https://vk.com/video/@kosmashow/all?z=video-67259638_456239092%2Fclub67259638', '_blank', 'noopener,noreferrer')">Видео</button>
+                    <button class="btn outline fit" onclick="window.open('https://vk.com/video/@kosmashow/all?z=video-67259638_456239092%2Fclub67259638', '_blank', 'noopener,noreferrer')">Видео</button>
                 </div>
             </div>
         </div>
@@ -160,7 +235,7 @@
         <div class="dance-text">
             <p>Танцевальный репертуар Яны Космачёвой включает в себя более 40 уникальных номеров на любую тему и мероприятие. Объединяет эти номера главное - степ, умело вплетенный в разные танцевальные жанры. Венгерский Чардаш, греческий Сиртаки, ирландская джига, аргентинское танго, джаз, блюз...нашей команде подвластно отстучать любой ритм! Танцуем соло, дуэты, трио, массовые номера, а также сделаем номер на заказ именно под ваше мероприятие</p>
         </div>
-        <button class="action-button" onclick="window.open('https://www.youtube.com/@kosmashow', '_blank', 'noopener,noreferrer')">Узнать больше</button>
+        <button class="btn outline" onclick="window.open('https://www.youtube.com/@kosmashow', '_blank', 'noopener,noreferrer')">Узнать больше</button>
         <div class="photo-collage">
             <div class="photo-container">
                 <img src="logos/collage/1.jpg" alt="Фото 1" class="thumbnail" onclick="showLightbox(0)">

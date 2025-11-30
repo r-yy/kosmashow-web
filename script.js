@@ -11,7 +11,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     var hiddenConcerts = document.getElementById('hiddenConcerts');
     if (hiddenConcerts.classList.contains('show')) {
         hiddenConcerts.classList.remove('show');
-        this.textContent = 'Следующие концерты';
+        this.textContent = 'Другие концерты';
     } else {
         hiddenConcerts.classList.add('show');
         this.textContent = 'Скрыть';
@@ -170,3 +170,64 @@ function handleTouchEnd() {
     startX = null;
     startY = null;
 }
+
+// === GALA SLIDER ===
+
+// индексы
+let galaIndex = 0;
+let galaSlides = document.querySelectorAll(".gala-slide");
+let galaDotsContainer = document.getElementById("galaDots");
+
+// СОЗДАЁМ ТОЧКИ
+galaSlides.forEach((_, i) => {
+    const dot = document.createElement("span");
+    dot.classList.add("gala-dot");
+    dot.onclick = () => manualGalaSlide(i);
+    galaDotsContainer.appendChild(dot);
+});
+
+let galaDots = document.querySelectorAll(".gala-dot");
+
+// ПОКАЗ СЛАЙДА
+function showGalaSlide(n) {
+    galaIndex = (n + galaSlides.length) % galaSlides.length;
+
+    galaSlides.forEach(slide => slide.classList.remove("active"));
+    galaDots.forEach(dot => dot.classList.remove("active"));
+
+    galaSlides[galaIndex].classList.add("active");
+    galaDots[galaIndex].classList.add("active");
+}
+
+// ФУНКЦИЯ АВТОПРОКРУТКИ (НЕ ОСТАНАВЛИВАЕТ АВТОПЛЕЙ)
+function autoNextGalaSlide() {
+    if (!galaAutoPlay) return;
+    galaIndex++;
+    showGalaSlide(galaIndex);
+}
+
+// ФУНКЦИЯ РУЧНОГО УПРАВЛЕНИЯ (ОСТАНАВЛИВАЕТ АВТОПЛЕЙ)
+function manualGalaSlide(n) {
+    stopGalaAutoplay();
+    showGalaSlide(n);
+}
+
+// СТРЕЛКИ — тоже ручное управление
+function changeGalaSlide(direction) {
+    stopGalaAutoplay();
+    galaIndex += direction;
+    showGalaSlide(galaIndex);
+}
+
+// ОСТАНОВКА АВТОПЛЕЯ
+let galaAutoPlay = true;
+function stopGalaAutoplay() {
+    galaAutoPlay = false;
+    clearInterval(galaAutoInterval);
+}
+
+// АВТОПЛЕЙ — до первого клика!
+let galaAutoInterval = setInterval(autoNextGalaSlide, 4000);
+
+// старт
+showGalaSlide(0);

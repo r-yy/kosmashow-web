@@ -1,948 +1,941 @@
-@font-face {
-    font-family: 'SignPainter';
-    src: url('../fonts/SignPainterHouseScript.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+/* =========================
+   1. CSS-переменные и базовые стили
+   ========================= */
+
+:root {
+  --font-main: "Georgia", "Times New Roman", serif;
+
+  --text-base: 1.3rem; /* 18px */
+  --text-small: 1rem;    /* 16px */
+
+  --h2: 2rem;            /* 32px */
+  --h3: 1.5rem;          /* 24px */
+
+  --color-text: gainsboro;
+  --color-accent: #CCB997;
+  --color-white: gainsboro;
+
+  --space-xl: 60px;  /* большие расстояния между секциями */
+  --space-l: 40px;   /* подзаголовки / блоки внутри секций */
+  --space-m: 30px;   /* элементы внутри блока */
+  --space-s: 20px;   /* абзацы, небольшие отступы */
+  --space-xs: 10px;  /* минимальные */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #262449, #001111);
-    color: gainsboro;
-    margin: 0;
-    padding: 60px 0 0 0; /* Добавляем отступ сверху, чтобы компенсировать фиксированный хедер */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: var(--font-main);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(to bottom, #1f0e11, #0a0a0a);
+  color: var(--color-text);
+  padding-top: 0; /* компенсируем фиксированный header */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-header {
-    width: 100%;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0); /* Полностью прозрачный */
-    color: white;
-    display: flex;
-    justify-content: space-between; /* Логотип слева, иконки справа */
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-sizing: border-box;
+/* Общие правила для секций и текста */
+
+section {
+  width: 100%;
+  margin-block: var(--space-xl);
+  padding-inline: var(--space-s);
 }
 
-.noscroll {
-    overflow: hidden;
-    height: 100%; /* Блокировка вертикальной прокрутки */
-    touch-action: none; /* Отключение всех жестов на сенсорных экранах */
-    position: fixed; /* Отключение прокрутки при свайпе на мобильных устройствах */
-    width: 100%; /* Гарантирует, что контент занимает всю ширину экрана */
-}
-
-header, section, footer {
-    background-color: transparent; /* Секции прозрачны, чтобы градиент был виден на всем экране */
-}
-
-.header-logo {
-    opacity: 0; /* Start fully transparent */
-    transition: opacity 0.3s ease; /* Smooth transition for showing */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Align text to the left */
-    text-align: center;
-}
-
-.header-logo h1 {
-    font-size: 1.5em; /* Smaller font size in the header */
-    margin: 0;
-    color: gainsboro; /* Main text color */
-    text-align: center;
-}
-
-.header-logo p {
-    font-size: 1em; /* Smaller subtitle font size in the header */
-    margin: 0;
-    color: gainsboro; /* Main text color */
-    text-align: center;
-}
-
-header.scrolled .header-logo {
-    opacity: 1; /* Fully visible when scrolled */
-}
-
-header.scrolled {
-    background-color: transparent
-}
-
-.header-logo-container {
-    display: none; /* Hidden initially */
-    flex-shrink: 0;
-}
-
-header.scrolled .header-logo-container {
-    display: block; /* Show the logo in the header when scrolling */
-}
-
-.logo-container {
-    font-family: 'SignPainter', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    color: transparent;
-    z-index: 2;
-    position: absolute;
-    top: 57%;
-    left: 65%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease;
-    -webkit-text-stroke: 2px whitesmoke;
-}
-
-.logo-container h1 {
-    font-size: 6em; /* Larger font size in the hero section */
-    margin: 0;
-}
-
-.logo-container p {
-    font-size: 4em; /* Larger subtitle font size in the hero section */
-    margin: 0;
-}
-
-h1 {
-    font-size: 2.5em; /* Slightly smaller font size */
-    margin: 0;
-    font-family: 'Georgia', sans-serif; /* Используем тот же шрифт, что и для остального текста */
+section > * + * {
+  margin-top: var(--space-l);
 }
 
 p {
-    font-size: 1.2em; /* Slightly smaller font size */
-    margin: 0;
-    font-family: 'Georgia', sans-serif; /* Используем тот же шрифт, что и для остального текста */
+  font-size: var(--text-base);
+  margin: 0 0 var(--space-s) 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--space-m) 0;
+  font-family: var(--font-main);
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  font-size: var(--h2);
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: var(--h3);
+  color: var(--color-text);
+}
+
+/* =========================
+   2. Header
+   ========================= */
+
+header {
+  width: 100%;
+  padding: 10px 20px;
+  background: transparent;
+  background-color: transparent;
+  color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+header * {
+    background: transparent !important;
+}
+
+header,
+header.scrolled {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+header * {
+    background: transparent !important;
+}
+
+.noscroll {
+  overflow: hidden;
+  height: 100%;
+  touch-action: none;
+  position: fixed;
+  width: 100%;
+}
+
+.header-logo {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header-logo h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.header-logo p {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--color-text);
+}
+
+header.scrolled .header-logo {
+  opacity: 1;
 }
 
 .social-icons {
-    display: flex;
-    gap: 15px;
-    justify-content: flex-end; /* Align icons to the right */
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
 }
 
 .icon-link {
-    display: flex; /* Flexbox for centering icon */
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
 }
 
 .icon-link:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .social-icon {
-    max-width: 100%;
-    max-height: 100%;
-    display: block;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }
 
-/* Hero Section with Background Image */
+/* =========================
+   3. Hero
+   ========================= */
+
 .hero-section {
-    width: 100%;
-    height: 100vh; /* Full height of the viewport */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  width: 100%;
+  margin-block: 0; /* hero без доп. отступа сверху/снизу */
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .hero-section .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background-color: rgba(0, 0, 0, 0.4); Dark overlay */
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
-.hero-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%; /* Увеличиваем высоту градиента для более плавного перехода */
-    background: linear-gradient(to bottom, rgba(250, 246, 246, 0) 0%, #1d203b 100%);
-    /* Начинаем градиент с 40% от высоты, что даёт более мягкий и постепенный переход */
-    
+.hero-buttons {
+  position: absolute;
+  bottom: 40%;
+  left: 25%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 3;
 }
 
-
-h2 {
-    text-align: center;
-    font-size: 2em;
-    color: gainsboro;
-    margin-bottom: 30px;
-    font-family: 'Georgia', sans-serif; /* Используем тот же шрифт, что и для остального текста */
-    font-weight: bold; /* Толщина шрифта для подзаголовка */
+/* Если вдруг вернёшь логотип в hero */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--color-text);
+  z-index: 2;
+  position: absolute;
+  top: 57%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
 }
 
+.logo-container h1 {
+  font-size: 2.8rem;
+}
+
+.logo-container p {
+  font-size: 1.6rem;
+}
+
+/* =========================
+   4. Кнопки (единый стиль)
+   ========================= */
+
+.btn {
+  padding: 14px 28px;
+  border: 1px solid var(--color-text);
+  color: var(--color-text);
+  background: transparent;
+  border-radius: 14px;
+  font-size: var(--text-base);
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+  font-family: var(--font-main);
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn.primary {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.btn.outline {
+  background: transparent;
+  border-color: var(--color-text);
+}
+
+.btn.full {
+  width: 100%;
+}
+
+.btn.blur {
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(6px);
+}
+
+.btn.fit {
+    width: auto !important;
+    display: inline-block;
+}
+
+/* =========================
+   5. Афиша / Concerts
+   ========================= */
 
 .concerts {
+    margin-inline: auto;
     width: 90%;
     max-width: 900px;
     margin: 40px auto; /* Центрируем блок .concerts */
     padding: 20px;
+    padding-inline: 0;
     background-color: transparent;
     border-radius: 10px;
     z-index: 2;
     position: relative;
+    margin-block: var(--space-m);
+    padding-block: var(--space-s);
+}
+
+.concerts h2 {
+  margin-bottom: var(--space-m);
 }
 
 .concert {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr; /* Три колонки: Дата, Тайтл и описание, Время */
-    gap: 10px; /* Отступы между колонками */
-    background-color: transparent;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 15px;
-    transition: transform 0.3s ease;
-    color: gainsboro;
-    align-items: center; /* Центрирование контента по вертикали */
-    border-bottom: 0.5px solid gainsboro; /* Линия для разделения концертов */
-    border-top: none;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: var(--space-xs);
+  background-color: transparent;
+  padding: 8px 0;
+  color: var(--color-text);
+  align-items: center;
+  border-bottom: 0.5px solid var(--color-text);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
+/* Центрирование блока даты */
 .date-time {
-    font-size: 1.2em;
-    color: #CCB997;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+/* Первая строка — дата */
+.date-time h3:first-child {
+    font-size: var(--text-base);       /* чуть крупнее */
+    margin: 0 0 6px 0;        /* отступ вниз */
+    color: var(--color-text);
+    line-height: 1.3;
+}
+
+/* Вторая строка — тип ("Премьера!") */
+.date-time h3:nth-child(2) {
+    font-size: 1.2rem;        /* немного меньше */
+    margin: 0;                /* убираем отступы */
+    color: var(--color-accent); /* менее яркий */
+    opacity: 0.8;
+}
+
 
 .details h3 {
-    font-size: 1.8em;
-    margin: 0;
-    color: #CCB997;
-    text-align: center;
-    font-weight: bold;
+  margin: 0;
+  font-size: var(--h3);
+  color: var(--color-accent);
+  text-align: center;
 }
 
 .details p {
-    margin: 5px 0 0 0; /* Убираем отступы сверху и снизу */
-    color: gainsboro;
-    text-align: center;
+  margin: var(--space-xs) 0 0;
+  color: var(--color-text);
+  text-align: center;
 }
 
 .time {
-    font-size: 1.2em;
-    text-align: left;
-    color: gainsboro;
-    text-align: center;
+  font-size: var(--text-small);
+  text-align: center;
+  color: var(--color-text);
 }
 
-h3, p {
-    margin: 0;
-}
-
-h3 {
-    font-size: 1.2em; /* Размер шрифта для подзаголовка */
-    margin-bottom: 20px; /* Отступ снизу */
-    margin-top: 20px;
-    color: gainsboro; /* Цвет текста, совпадающий с основным стилем */
-    font-family: 'Georgia', sans-serif; /* Используем тот же шрифт, что и для остального текста */
-    font-weight: normal;
-}
-
-/* For hidden concerts, use a transition and max-height trick for smooth reveal */
 .hidden-concerts {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out, padding 0.5s ease-out;
 }
 
-/* When revealing the concerts */
 .hidden-concerts.show {
-    max-height: 1000px; /* Large enough to fit all content */
-    padding: 20px 0;
+  max-height: 1000px;
+  padding-top: 0 !important;
 }
 
-button.next-concerts {
-    background-color: transparent; /* Прозрачный фон */
-    color: gainsboro; /* Цвет текста gainsboro */
-    border: 1px solid gainsboro; /* gainsboro обводка */
-    padding: 15px 30px; /* Внутренние отступы */
-    cursor: pointer; /* Курсор при наведении */
-    border-radius: 16px; /* Округление углов кнопки */
-    font-size: 1.2em; /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход при наведении */
-    display: block; /* Кнопка занимает место по размеру текста */
-    margin: 20px auto; /* Центрирование кнопки */
-    align-items: center;
-    text-align: center; /* Центрирование текста внутри кнопки */
-    font-family: 'Georgia', sans-serif;
+/* =========================
+   6. Блок «Гала»
+   ========================= */
+
+.gala-section {
+  max-width: 1100px;
+  margin-inline: auto;
 }
 
-button.next-concerts:hover {
-    background-color: #262449;
+.gala-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: var(--space-l);
 }
+
+.gala-content {
+  display: flex;
+  gap: var(--space-m);
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.gala-text {
+  flex: 2;
+  padding-right: var(--space-s);
+  max-width: 660px;
+}
+
+.gala-text p {
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.gala-image {
+  flex: 1.2;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Слайдер */
+
+.gala-slider {
+  position: relative;
+  width: 100%;
+  padding-top: 140%;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.gala-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.gala-slide.active {
+  opacity: 1;
+}
+
+.gala-prev,
+.gala-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 12px;
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  user-select: none;
+  z-index: 20;
+  transition: background 0.3s;
+}
+
+.gala-prev:hover,
+.gala-next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.gala-prev {
+  left: 10px;
+}
+
+.gala-next {
+  right: 10px;
+}
+
+.gala-dots {
+  text-align: center;
+  margin-top: var(--space-s);
+}
+
+.gala-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background: #888;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.gala-dot.active {
+  background: var(--color-white);
+}
+
+/* =========================
+   7. Блок «Профиль Яны»
+   ========================= */
 
 .profile-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 0;
-    color: gainsboro;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text);
 }
 
 .profile-content {
-    display: flex;
-    max-width: 1000px;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  align-items: center;
+  gap: var(--space-m);
 }
 
 .profile-image {
-    flex: 1;
-    margin-right: 20px;
+  flex: 1;
 }
 
 .profile-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 .profile-text {
-    flex: 2;
-    text-align: left;
-    padding: 20px;
+  flex: 2;
+  text-align: center;
+  max-width: 660px;
 }
 
 .profile-text h2 {
-    font-size: 2em;
-    margin: 0 0 10px;
+  font-size: 2rem;
+  margin-bottom: var(--space-xs);
 }
 
 .profile-text .subtitle {
-    font-size: 1.2em;
-    color: gray;
-    margin-bottom: 20px;
-    text-align: center;
+  font-size: var(--text-small);
+  color: var(--color-accent);
+  opacity: 0.7;
+  margin-bottom: var(--space-m);
+  text-align: center;
 }
 
 .profile-text hr {
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 20px 50% - 10px;
-    width: 50px;
+  border: 0;
+  border-top: 1px solid var(--color-text);
+  opacity: 0.3;
+  margin: 10px auto var(--space-m);
+  width: 50px;
 }
 
-.profile-text p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
+/* =========================
+   8. Репертуар и программы
+   ========================= */
 
-/* Программы */
 .repertoire {
-    margin: 0px 0;
-    text-align: center;
+  text-align: center;
 }
 
 .repertoire-title {
-    font-size: 2em; /* Размер шрифта совпадает с текстом описания */
-    color: gainsboro; /* Цвет текста, совпадающий с основным текстом */
-    font-weight: bold; /* Толщина шрифта как у основного текста */
-    line-height: 1.6; /* Межстрочный интервал для комфортного чтения */
-    text-align: center; /* Центрирование текста */
+  font-size: 2rem;
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
 .subsection-title {
-    font-size: 1.5em; /* Размер шрифта для подзаголовка */
-    margin-bottom: 20px; /* Отступ снизу */
-    margin-top: 20px;
-    color: gainsboro; /* Цвет текста, совпадающий с основным стилем */
-    font-weight: bold; /* Толщина шрифта для подзаголовка */
-    text-align: center; /* Центрирование текста */
+  font-size: 1.5rem;
+  margin-bottom: var(--space-m);
+  margin-top: var(--space-m);
+  color: var(--color-text);
 }
 
 .programs-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  justify-content: center;
 }
 
 .program {
-    width: calc(30.333% - 20px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: transparent;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    position: relative;
-    margin-bottom: 100px;
+  width: calc(33.333% - var(--space-m));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  background-color: transparent;
+  padding: var(--space-m);
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  position: relative;
 }
 
 .program:hover {
-    transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .program-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: var(--space-s);
 }
 
 .program-details {
-    flex: 1;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-details h3 {
+  margin-bottom: var(--space-s);
+  font-size: 1.5rem;
+  color: var(--color-text);
 }
 
 .program-details p {
-    font-size: 1.1em; /* Размер шрифта как в описании Яны Космачёвой */
-    color: gainsboro; /* Цвет текста как в описании Яны Космачёвой */
-    line-height: 1.6; /* Межстрочный интервал для комфортного чтения */
-    margin-bottom: 20px; /* Отступ снизу для пространства между параграфом и следующими элементами */
-    text-align: left;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--space-m);
+  max-width: 660px;
 }
 
+/* =========================
+   9. Танцевальные номера / Коллаж
+   ========================= */
 
-.program-details h3 {
-    margin-bottom: 15px; /* Устанавливаем отступ между заголовком и текстом */
-    font-size: 1.5em; /* Дополнительно можно изменить размер шрифта, если нужно */
-    color: gainsboro; /* Цвет текста */
-    margin-top: 50px;
-}
-
-
-
-.video-button {
-    background-color: transparent; /* Прозрачный фон */
-    color: gainsboro; /* Цвет текста черный */
-    border: 1px solid gainsboro; /* Черная обводка */
-    padding: 20px 0px; /* Внутренние отступы для кнопки */
-    cursor: pointer; /* Курсор при наведении */
-    border-radius: 16px; /* Округление углов кнопки */
-    font-size: 1em; /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход при наведении */
-    display: inline-block; /* Убираем возможное растягивание кнопки */
-    margin-top: auto; /* Отталкивает кнопку к нижнему краю контейнера */
-    width: 30%;
-    font-family: 'Georgia', sans-serif;
-}
-
-.video-button:hover {
-    background-color: #000; /* Черный фон при наведении */
-    color: #fff; /* Белый текст при наведении */
-}
-
-/* Танцы */
 .dance-text {
-    max-width: 800px; /* Ограничение максимальной ширины текста */
-    margin: 30px auto 20px auto; /* Центрирование блока текста с отступом снизу */
-    padding: 0 20px; /* Отступы по бокам внутри блока */
-    text-align: center; /* Центрирование текста */
+  max-width: 660px;
+  margin: var(--space-m) auto var(--space-s);
+  padding: 0 var(--space-s);
+  text-align: center;
 }
 
 .dance-text p {
-    font-size: 1.1em; /* Размер шрифта, как и для остального текста на странице */
-    color: gainsboro; /* Цвет текста */
-    line-height: 1.6; /* Межстрочный интервал */
-    margin-bottom: 20px; /* Отступ снизу для разделения абзацев */
-}
-
-.action-button {
-    background-color: transparent; /* Прозрачный фон */
-    color: gainsboro; /* Цвет текста черный */
-    border: 1px solid gainsboro; /* Черная обводка */
-    padding: 15px 30px; /* Внутренние отступы */
-    cursor: pointer; /* Курсор при наведении */
-    border-radius: 16px; /* Округление углов кнопки */
-    font-size: 1.2em; /* Размер шрифта */
-    font-weight: bold; /* Жирный текст */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход при наведении */
-    display: inline-block; /* Кнопка занимает место по размеру текста */
-    margin: 20px auto; /* Отступы сверху и снизу */
-    font-family: 'Georgia', sans-serif;
-}
-
-.action-button:hover {
-    background-color: #000; /* Черный фон при наведении */
-    color: #fff; /* Белый текст при наведении */
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.6;
 }
 
 .photo-collage {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 изображений в ряд */
-    grid-auto-rows: 250px; /* Фиксированная высота для всех строк */
-    gap: 0; /* Убираем отступы между изображениями */
-    width: 100%;
-    margin: 100px auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 250px;
+  gap: 0;
+  width: 100%;
+  margin: var(--space-xl) auto;
 }
 
 .photo-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out; /* Плавная анимация для масштаба и тени */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
 }
 
 .photo-container:hover {
-    transform: scale(1.1); /* Увеличение и легкое вращение при наведении */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Добавление тени */
+  transform: scale(1.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .thumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-    transition: filter 0.4s ease-in-out; /* Плавная анимация для фильтров */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: filter 0.4s ease-in-out;
 }
 
 .photo-container:hover .thumbnail {
-    filter: brightness(1.2) contrast(1.1) saturate(1.2); /* Увеличение яркости, контраста и насыщенности при наведении */
+  filter: brightness(1.2) contrast(1.1) saturate(1.2);
 }
+
+/* Lightbox */
 
 .lightbox {
-    display: none; /* Скрываем lightbox по умолчанию */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .lightbox.show {
-    display: flex; /* Показываем lightbox */
+  display: flex;
 }
 
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    color: white;
-    font-size: 24px;
-    padding: 16px;
-    font-weight: bold;
-    transition: 0.6s ease;
-    user-select: none;
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  color: var(--color-white);
+  font-size: 24px;
+  padding: 16px;
+  font-weight: bold;
+  transition: 0.6s ease;
+  user-select: none;
 }
 
 .prev {
-    left: 10px;
-    margin-top: -22px;
-    border-radius: 0 3px 3px 0;
+  left: 10px;
+  margin-top: -22px;
+  border-radius: 0 3px 3px 0;
 }
 
 .next {
-    right: 10px;
-    margin-top: -22px;
-    border-radius: 3px 0 0 3px;
+  right: 10px;
+  margin-top: -22px;
+  border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Footer */
-body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f8f9fa; /* Основной цвет фона страницы */
-}
+/* =========================
+   10. Footer
+   ========================= */
 
 .main-footer {
-    background-color: #f8f9fa; /* Основной фон страницы */
-    color: #212529; /* Основной цвет текста */
-    padding: 20px 0;
-    width: 100%;
-    text-align: center;
+  background: transparent;
+  color: var(--color-text);
+  padding: var(--space-m) 0;
+  width: 100%;
+  text-align: center;
 }
 
 .footer-content {
-    max-width: 600px; /* Максимальная ширина контента */
-    margin: 0 auto; /* Центрируем контент */
-    padding: 20px;
-    border-top: 1px solid #ddd; /* Светлый бордюр для отделения футера */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-m);
+  border-top: 1px solid var(--color-text);
+  opacity: 0.85;
 }
 
 .contact-info h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #212529; /* Основной цвет текста */
+  font-size: 1.5rem;
+  margin-bottom: var(--space-s);
+  color: var(--color-text);
 }
 
 .contact-info p {
-    font-size: 1em;
-    color: #212529; /* Основной цвет текста */
-    margin: 5px 0;
+  font-size: var(--text-small);
+  color: var(--color-text);
+  margin: 4px 0;
 }
 
 .contact-info p strong {
-    color: #000; /* Цвет текста для имени */
+  font-weight: bold;
 }
 
 .footer-icons {
-    margin-top: 20px;
+  margin-top: var(--space-m);
 }
 
 .footer-icons p {
-    font-size: 0.8em;
-    color: #888;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  opacity: 0.55;
 }
 
 .footer-icons a {
-    color: #888;
-    text-decoration: none;
+  color: var(--color-text);
+  opacity: 0.7;
+  text-decoration: none;
 }
 
 .footer-icons a:hover {
-    color: #000; /* Цвет при наведении */
-    text-decoration: underline;
+  opacity: 1;
+  text-decoration: underline;
 }
 
-/* Адаптация для экранов шириной 768px и меньше */
+/* =========================
+   11. Адаптив (max-width: 768px)
+   ========================= */
+
 @media only screen and (max-width: 768px) {
-    header {
-        padding: 10px 15px;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .btn {
+    padding: 16px 22px;
+    width: 100%;
+    font-size: var(--text-small);
+    border-radius: 12px;
+  }
 
-    .header-logo {
-        opacity: 1; /* Показываем логотип на мобильных устройствах */
-        text-align: left; /* Выравнивание текста логотипа по левому краю */
-    }
+  .btn + .btn {
+    margin-top: 12px;
+  }
 
-    .header-logo h1 {
-        font-size: 1.2em; /* Уменьшаем размер шрифта для мобильных */
-    }
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    bottom: 20%;
+  }
 
-    .header-logo p {
-        font-size: 0.9em; /* Уменьшаем размер подзаголовка для мобильных */
-    }
+  header {
+    padding: 10px 15px;
+  }
 
-    .social-icons {
-        gap: 10px; /* Уменьшаем расстояние между иконками */
-        justify-content: flex-end; /* Иконки остаются справа */
-    }
+  .header-logo {
+    opacity: 1;
+    text-align: left;
+  }
 
-    .icon-link {
-        width: 35px; /* Немного уменьшаем размер иконок */
-        height: 35px;
-    }
+  .header-logo h1 {
+    font-size: 1.2rem;
+  }
 
-    .logo-container {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-    }
+  .header-logo p {
+    font-size: 0.9rem;
+  }
 
-    .logo-container h1 {
-        font-size: 4em; /* Корректируем размер текста в hero-секции для мобильных */
-    }
+  .icon-link {
+    width: 35px;
+    height: 35px;
+  }
 
-    .logo-container p {
-        font-size: 2.5em; /* Корректируем размер подзаголовка в hero-секции для мобильных */
-    }
+  .concert {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 8px 0;
+  }
 
-    /* Картинка */
-    .hero-section {
-        height: 80vh; /* Уменьшаем высоту секции на мобильных */
-        background-size: cover; /* Увеличиваем покрытие изображения */
-    }
+  .profile-content {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+  }
 
-    .logo-container h1 {
-        font-size: 3em; /* Уменьшаем размер шрифта заголовка на мобильных */
-    }
+  .profile-image {
+    width: 80%;
+  }
 
-    .logo-container p {
-        font-size: 1.5em; /* Уменьшаем размер подзаголовка на мобильных */
-    }
+  .profile-text {
+    text-align: center;
+  }
 
-    /* Расписание */
-    .concert {
-        grid-template-columns: 1fr; /* Одноколоночный макет */
-        text-align: center; /* Центрируем текст */
-        padding: 5px 5px;
-    }
+  .profile-text .subtitle {
+    text-align: center;
+  }
 
-    .date-time, .time {
-        font-size: 1em; /* Уменьшаем размер шрифта */
-    }
+  .program {
+    width: calc(50% - var(--space-m));
+  }
 
-    .details h3 {
-        font-size: 1.7em; /* Уменьшаем размер заголовка */
-    }
+  .photo-collage {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+  }
 
-    .details p {
-        font-size: 1em; /* Уменьшаем размер описания */
-    }
-
-    button.next-concerts {
-        padding: 20px 15px; /* Уменьшаем отступы внутри кнопки */
-        font-size: 1.2em; /* Уменьшаем размер шрифта кнопки */
-        width: 100%;
-    }
-
-    /* Профиль */
-    .profile-content {
-        flex-direction: column; /* Переключаем макет на вертикальный */
-        align-items: center; /* Центрируем контент */
-    }
-
-    .profile-image {
-        margin-right: 0;
-        margin-bottom: 20px; /* Добавляем отступ снизу */
-        width: 80%; /* Ограничиваем ширину изображения */
-    }
-
-    .profile-text {
-        padding: 20px;
-        text-align: center; /* Центрируем текст */
-    }
-
-    .profile-text h2 {
-        font-size: 1.8em; /* Уменьшаем размер заголовка */
-    }
-
-    .profile-text .subtitle {
-        font-size: 1em; /* Уменьшаем размер подзаголовка */
-        margin-bottom: 15px; /* Уменьшаем отступ */
-    }
-
-    .profile-text p {
-        font-size: 1em; /* Уменьшаем размер текста */
-        line-height: 1.5;
-        margin-bottom: 15px; /* Уменьшаем отступ */
-    }
-
-    .profile-text hr {
-        margin: 20px auto; /* Центрируем и ограничиваем ширину горизонтальной линии */
-        width: 50px;
-    }
-
-    /* Репертуар */
-    .program {
-        width: calc(45% - 20px); /* Две колонки на средних экранах */
-        margin-bottom: 20px;
-    }
-
-    .program-details h3 {
-        font-size: 1.5em; /* Немного уменьшаем размер заголовка */
-    }
-
-    .program-details p {
-        font-size: 1em; /* Уменьшаем размер текста */
-    }
-
-    .video-button {
-        padding: 20px 15px; /* Уменьшаем отступы внутри кнопки */
-        font-size: 1.2em; /* Уменьшаем размер шрифта кнопки */
-        width: 100%;
-    }
-
-    /* Танцы и коллаж */
-    .photo-collage {
-        grid-template-columns: repeat(3, 1fr); /* 3 изображения в ряд на планшетах */
-        grid-auto-rows: 200px; /* Уменьшенная высота строк */
-    }
-
-    .photo-container:hover {
-        transform: scale(1.05); /* Немного меньшее увеличение при наведении */
-    }
-    
-    .action-button {
-        padding: 20px 15px; /* Уменьшаем отступы внутри кнопки */
-        font-size: 1.2em; /* Уменьшаем размер шрифта кнопки */
-        width: 95%;
-    }
-
-    /* Footer */
-    .footer-content {
-        padding: 15px;
-    }
-
-    .contact-info h3 {
-        font-size: 1.3em; /* Немного уменьшаем размер заголовка */
-    }
-
-    .contact-info p {
-        font-size: 0.9em; /* Уменьшаем размер текста */
-        margin: 4px 0; /* Уменьшаем отступы между элементами */
-    }
-
-    .footer-icons p {
-        font-size: 0.75em; /* Уменьшаем размер текста для иконок */
-    }
+  .footer-content {
+    padding: var(--space-s);
+  }
 }
 
-/* Адаптация для экранов шириной 480px и меньше */
+/* =========================
+   12. Адаптив (max-width: 480px)
+   ========================= */
+
 @media only screen and (max-width: 480px) {
-    .header-logo h1 {
-        font-size: 1em; /* Ещё больше уменьшаем размер шрифта */
-    }
+  .btn {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
 
-    .header-logo p {
-        font-size: 0.8em; /* Ещё больше уменьшаем размер подзаголовка */
-    }
+  .icon-link {
+    width: 30px;
+    height: 30px;
+  }
 
-    .icon-link {
-        width: 30px; /* Уменьшаем размер иконок */
-        height: 30px;
-    }
+  .hero-section {
+    height: 70vh;
+  }
 
-    .logo-container h1 {
-        font-size: 3em; /* Ещё больше уменьшаем размер текста в hero-секции */
-    }
+  .concert {
+    padding: 6px 0;
+  }
 
-    .logo-container p {
-        font-size: 2em; /* Ещё больше уменьшаем размер подзаголовка в hero-секции */
-    }
+  .details h3 {
+    font-size: 1.3rem;
+  }
 
-    /* Картинка */
-    .hero-section {
-        height: 70vh; /* Еще больше уменьшаем высоту секции на маленьких экранах */
-    }
+  .details p {
+    font-size: 0.95rem;
+  }
 
-    .logo-container h1 {
-        font-size: 2.5em; /* Еще больше уменьшаем размер заголовка */
-    }
+  .time,
+  .date-time {
+    font-size: 0.9rem;
+  }
 
-    .logo-container p {
-        font-size: 1.2em; /* Еще больше уменьшаем размер подзаголовка */
-    }
+  .profile-image {
+    width: 100%;
+  }
 
-    /* Расписание */
-    .concert {
-        padding: 5px 5px;
-    }
+  .program {
+    width: 100%;
+  }
 
-    .date-time, .time {
-        font-size: 0.9em; /* Еще больше уменьшаем размер шрифта */
-    }
+  .photo-collage {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 150px;
+  }
 
-    .details h3 {
-        font-size: 1.6em; /* Еще больше уменьшаем размер заголовка */
-    }
+  .footer-content {
+    padding: var(--space-xs);
+  }
 
-    .details p {
-        font-size: 0.9em; /* Еще больше уменьшаем размер описания */
-    }
+  .footer-icons p {
+    font-size: 0.7rem;
+  }
+}
 
-    button.next-concerts {
-        padding: 20px 12px; /* Еще больше уменьшаем отступы внутри кнопки */
-        font-size: 1.1em; /* Еще больше уменьшаем размер шрифта кнопки */
-        width: 100%;
-    }
+/* --- FIX 1. Дата в афише ниже --- */
+.concert .date-time h3:first-child {
+    margin-top: 6px;
+    line-height: 1.35;
+}
 
-    /* Профиль */
-    .profile-image {
-        width: 100%; /* Изображение занимает всю ширину контейнера */
-    }
+/* --- FIX 2. Кнопка "Другие концерты" по центру и по ширине текста --- */
+#toggleButton {
+    display: block;              /* был inline-block */
+    margin: 20px auto 0 auto;    /* центрирование по горизонтали */
+    text-align: center;
+    width: auto !important;      /* кнопка по ширине текста */
+}
 
-    .profile-text h2 {
-        font-size: 1.5em; /* Еще больше уменьшаем размер заголовка */
-    }
-
-    .profile-text .subtitle {
-        font-size: 0.9em; /* Уменьшаем размер подзаголовка */
-        margin-bottom: 10px; /* Еще больше уменьшаем отступ */
-    }
-
-    .profile-text p {
-        font-size: 0.9em; /* Еще больше уменьшаем размер текста */
-        margin-bottom: 10px; /* Еще больше уменьшаем отступ */
-    }
-
-    /* Репертуар */
-    .program {
-        width: 100%; /* Одна колонка на маленьких экранах */
-        margin-bottom: 20px;
-    }
-
-    .program-details h3 {
-        font-size: 1.5em; /* Еще больше уменьшаем размер заголовка */
-    }
-
-    .program-details p {
-        font-size: 0.9em; /* Еще больше уменьшаем размер текста */
-    }
-
-    .video-button {
-        padding: 20px 15px; /* Уменьшаем отступы внутри кнопки */
-        font-size: 1.1em; /* Уменьшаем размер шрифта кнопки */
-        width: 100%;
-    }
-
-    /* Танцы и коллаж */
-    .dance-text p {
-        font-size: 1em; /* Уменьшение размера шрифта для маленьких экранов */
-    }
-
-    .photo-collage {
-        grid-template-columns: repeat(2, 1fr); /* 2 изображения в ряд на маленьких экранах */
-        grid-auto-rows: 150px; /* Еще меньшая высота строк */
-    }
-
-    .photo-container:hover {
-        transform: scale(1.02); /* Еще меньшее увеличение при наведении */
-    }
-
-    .action-button {
-        padding: 20px 15px; /* Уменьшаем отступы внутри кнопки */
-        font-size: 1.2em; /* Уменьшаем размер шрифта кнопки */
-        width: 95%;
-    }
-
-    /* Footer */
-    .footer-content {
-        padding: 10px;
-    }
-
-    .contact-info h3 {
-        font-size: 1.2em; /* Еще больше уменьшаем размер заголовка */
-        margin-bottom: 10px; /* Уменьшаем отступ снизу */
-    }
-
-    .contact-info p {
-        font-size: 0.85em; /* Еще больше уменьшаем размер текста */
-        margin: 3px 0; /* Еще больше уменьшаем отступы между элементами */
-    }
-
-    .footer-icons p {
-        font-size: 0.7em; /* Уменьшаем размер текста для иконок на маленьких экранах */
-    }
-
-    .footer-icons a {
-        font-size: 0.85em; /* Уменьшаем размер текста для ссылок */
-    }
+/* Увеличенный размер текста названия спектакля в афише */
+.concert .details h3 {
+    font-size: 1.9rem;   /* Было 1.5rem */
+    line-height: 1.2;
 }
