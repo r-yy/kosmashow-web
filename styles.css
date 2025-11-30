@@ -985,3 +985,59 @@ header.scrolled .header-logo {
     font-size: 1.9rem;   /* Было 1.5rem */
     line-height: 1.2;
 }
+
+/* =========================
+   Gala – support block
+   ========================= */
+
+/* --- Block: Support ("При поддержке") --- */
+.gala-support {
+    margin-top: 12px;
+    padding: 18px 18px;
+
+    width: fit-content;          /* блок ровно по ширине контента */
+    max-width: 100%;             /* но не выходить за пределы */
+    margin-left: auto;
+    margin-right: auto;
+
+    background: rgba(0, 0, 0, 0.2);   /* лёгкая прозрачность */
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    color: var(--color-accent);
+    font-size: var(--text-base);
+    text-align: center;
+}
+
+/* Логотип */
+.gala-support .bru-logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 30px;
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .gala-support {
+        flex-direction: column;
+        gap: 0;              /* было 8px — делаем ближе */
+        padding: 8px 8px;     /* немного компактнее */
+        width: 90%;
+    }
+
+    .gala-support span {
+        white-space: normal;
+        line-height: 1.15;     /* чуть плотнее */
+    }
+
+    .gala-support .bru-logo {
+        height: 46px;          /* была 50px — тоже уменьшили */
+    }
+}
