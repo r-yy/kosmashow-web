@@ -781,6 +781,10 @@ header.scrolled .header-logo {
    ========================= */
 
 @media only screen and (max-width: 768px) {
+  .hero-section {
+        background-position: 8% center !important;
+    }
+
   .btn {
     padding: 16px 22px;
     width: 100%;
@@ -860,6 +864,22 @@ header.scrolled .header-logo {
   .footer-content {
     padding: var(--space-s);
   }
+
+  .gala-content {
+        flex-direction: column;
+    }
+
+    .gala-image {
+        order: 1;
+        width: 100%;
+        max-width: none;
+    }
+
+    .gala-text {
+        order: 2;
+        padding-right: 0;
+        margin-top: 20px;
+    }
 }
 
 /* =========================

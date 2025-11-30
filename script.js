@@ -231,3 +231,11 @@ let galaAutoInterval = setInterval(autoNextGalaSlide, 4000);
 
 // старт
 showGalaSlide(0);
+
+function scrollToGala() {
+    const target = document.getElementById("gala-show");
+    const offset = 80; // можно менять
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: "smooth" });
+}
